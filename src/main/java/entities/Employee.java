@@ -6,7 +6,8 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "Employee.deleteAllRows", query = "DELETE from Employee "),
         @NamedQuery(name = "Employee.getAll", query = "select e from Employee e"),
-        @NamedQuery(name = "Movie.getByName", query = "select e from Employee e where e.name =:name")})
+        @NamedQuery(name = "Employee.getByName", query = "select e from Employee e where e.name =:name"),
+@NamedQuery(name = "Employee.getHighest", query = "SELECT e from Employee e ORDER BY e.salary desc")})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

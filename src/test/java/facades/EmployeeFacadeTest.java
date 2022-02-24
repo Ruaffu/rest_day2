@@ -69,10 +69,18 @@ class EmployeeFacadeTest {
     }
 
     @Test
-    void getEmployeesWithHigestSalary() {
+    void getEmployeesWithHighestSalary() {
+        String expected = emp2.getName();
+        String actual = facade.getEmployeesWithHighestSalary().getName();
+        assertEquals(expected, actual);
     }
 
     @Test
     void createEmployee() {
+        Employee emp3 = new Employee("Sean don", "3 Backstreet", 110000);
+        facade.createEmployee(emp3);
+        String expected = emp3.getName();
+        String actual = facade.getEmployeeById(emp3.getId()).getName();
+        assertEquals(expected, actual);
     }
 }

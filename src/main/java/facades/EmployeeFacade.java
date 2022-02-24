@@ -49,26 +49,26 @@ public class EmployeeFacade {
 
     public Employee getEmployeeByName(String name){
         EntityManager em = getEntityManager();
-        TypedQuery<Employee> query = em.createQuery("SELECT e.name FROM Employee e WHERE e.name =:name ", Employee.class);
+        TypedQuery<Employee> query = em.createNamedQuery("Employee.getByName", Employee.class);
         query.setParameter("name", name);
         Employee emp = query.getSingleResult();
         return emp;
 
     }
 
-    public Set<Employee> getAllEmployees(){
+    public List<Employee> getAllEmployees(){
         EntityManager em = getEntityManager();
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e", Employee.class);
-        Set<Employee> employees = (Set<Employee>) query.getResultList();
+        List<Employee> employees = query.getResultList();
 
         return employees;
 
     }
 
-    public Employee getEmployeesWithHigestSalary(){
+    public Employee getEmployeesWithHighestSalary(){
         EntityManager em = getEntityManager();
         try {
-            TypedQuery<Employee> tq = em.createQuery("SELECT e from Employee e ORDER BY e.salary desc", Employee.class);
+            TypedQuery<Employee> tq = em.createNamedQuery("Employee.getHighest", Employee.class);
             tq.setMaxResults(1);
             return tq.getSingleResult();
         }finally {
